@@ -1,0 +1,41 @@
+@model RandomNumberGameViewModel
+
+@{
+    ViewBag.Title = "Random Number Game";
+}
+
+<form method="post">
+    <label asp-for="MinValue"></label>
+    <input asp-for="MinValue" class="form-control"/>
+    <label asp-for="MaxValue"></label>
+    <input asp-for="MaxValue" class="form-control"/>
+    <input asp-for="StartNewGame" type="hidden" value="true"/>
+    <input type="submit" value="Start New Game"/>
+</form>
+
+<input asp-for="TargetNumber" type="hidden" />
+
+@if (Model.Guess.HasValue)
+{
+    string message = "";
+    if (Model.Guess < Model.TargetNumber)
+    {
+        message = "Too low"!;
+    }
+    else if (Model.Guess > Model.TargetNumber)
+    {
+        message = "Too high!";
+    }
+    else if (Model.Guess == Model.TargetNumber)
+    {
+        message = "You got it!";
+    }
+    <h2>@message</h2>
+}
+
+<form method="post">
+    <label asp-for="Guess"></label>
+    <input asp-for="Guess" class="form-control"/>
+    <input type="submit" value="Guess"/>
+</form>
+

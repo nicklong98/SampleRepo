@@ -1,0 +1,16 @@
+@model GreetingViewModel
+
+@{
+    ViewBag.Title = "Greetings";
+}
+
+@if (!string.IsNullOrEmpty(Model?.Name))
+{
+    <h2>Greetings @Model.Name</h2>
+}
+
+<form method="post">
+    <label asp-for="Name"></label>
+    <input class="form-control" asp-for="Name"/>
+    <input type="submit" value="Submit" />
+</form>
